@@ -8,31 +8,40 @@ void moveEntities(Simulation* sim) {
 	for (Entity entity : *entityMgr->getEntities()) {
 
 		PositionComponent* posComp = componentMgr->getComponent<PositionComponent>(entity);
+		LivingComponent* livingComp = componentMgr->getComponent<LivingComponent>(entity);
 
-		if (posComp != nullptr) {
+		if (posComp != nullptr && livingComp != nullptr) {
 
-			// Translation vector, length of velocity
-			glm::vec2 trans = glm::vec2(0.0f, -posComp->velocity);
-			// Rotate to correct orientation
-			trans = glm::rotate(trans, glm::radians(posComp->rotation));
+			// Only apply movement if not dead (no energy)
+			if (livingComp->energy > 0) {
 
-			// Get current pos
-			glm::vec2 newPos = posComp->pos;
-			// Apply translation
-			newPos = newPos + trans;
+				// Translation vector, length of velocity
+				glm::vec2 trans = glm::vec2(0.0f, -posComp->velocity);
+				// Rotate to correct orientation
+				trans = glm::rotate(trans, glm::radians(posComp->rotation));
 
-			// Make sure entity stays within window @TODO should be abstracted outside of movement system: what if an entity needs to be able to leave?
-			// |<- OR ->|
-			if (newPos.x < 0 || newPos.x > sim->getWidth()) {
-				posComp->rotation = 360 - posComp->rotation;
+				// Get current pos
+				glm::vec2 newPos = posComp->pos;
+				// Apply translation
+				newPos = newPos + trans;
+
+				// Make sure entity stays within window @TODO should be abstracted outside of movement system: what if an entity needs to be able to leave?
+				// |<- OR ->|
+				if (newPos.x < 0 || newPos.x > sim->getWidth()) {
+					posComp->rotation = 360 - posComp->rotation;
+				}
+				// -^- OR -v-
+				if (newPos.y < 0 || newPos.y > sim->getHeight()) {
+					posComp->rotation = 180 - posComp->rotation;
+				}
+
+				// Update components position vector
+				posComp->pos = newPos;
+
+				// Deplete energy (proportionate to velocity)
+				livingComp->energy = livingComp->energy - posComp->velocity / 100.0f;
+
 			}
-			// -^- OR -v-
-			if (newPos.y < 0 || newPos.y > sim->getHeight()) {
-				posComp->rotation = 180 - posComp->rotation;
-			}
-
-			// Update components position vector
-			posComp->pos = newPos;
 
 		}
 

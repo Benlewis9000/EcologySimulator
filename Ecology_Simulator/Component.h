@@ -82,3 +82,14 @@ public:
 	float width;
 	float height;
 };
+
+class LivingComponent : public Component {
+public:
+	/**
+	 * Construct a living component (used to monitor energy level of an entity).
+	 * 
+	 * @param energy to start with
+	 */
+	LivingComponent(float energy) : energy(energy) {}
+	float energy;
+};
