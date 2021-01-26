@@ -24,7 +24,7 @@ Entity EntityManager::newEntity() {
  * @param rotation in degrees
  * @return Entity generated
  */
-Entity EntityManager::generateTestSprite(float xPos, float yPos, float rotation) {
+Entity EntityManager::generateTestSprite(float xPos, float yPos, float rotation, float velocity) {
 
 	// Create new entity
 	const Entity entity = this->newEntity();
@@ -71,7 +71,7 @@ Entity EntityManager::generateTestSprite(float xPos, float yPos, float rotation)
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
 	// Build and attach relevant components to entity
-	componentMgr->setComponent<PositionComponent>(entity, std::make_unique<PositionComponent>(xPos, yPos, rotation));
+	componentMgr->setComponent<PositionComponent>(entity, std::make_unique<PositionComponent>(glm::vec2(xPos, yPos), rotation, velocity));
 	componentMgr->setComponent<VertexComponent>(entity, std::make_unique<VertexComponent>(sizeof(indices) / sizeof(float), VBO, VAO));
 	componentMgr->setComponent<SpriteComponent>(entity, std::make_unique<SpriteComponent>(Texture::FOX, 100.0f, 200.0f));
 

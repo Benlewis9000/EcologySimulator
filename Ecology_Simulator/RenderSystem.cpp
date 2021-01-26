@@ -44,11 +44,11 @@ void renderEntities(Simulation* sim) {
 			glm::mat4 model(1.0f);
 
 			// Move to position
-			model = glm::translate(model, glm::vec3(pos->x, pos->y, 0.0f));
+			model = glm::translate(model, glm::vec3(pos->pos, 0.0f));
 			
 			// Rotate 
-			//model = glm::rotate(model, glm::radians(pos->rotation), glm::vec3(0.0f, 0.0f, 1.0f));
-			model = glm::rotate(model, glm::radians((float)glfwGetTime()*64 + pos->rotation), glm::vec3(0.0f, 0.0f, 1.0f));
+			model = glm::rotate(model, glm::radians(pos->rotation), glm::vec3(0.0f, 0.0f, 1.0f));
+			//model = glm::rotate(model, glm::radians((float)glfwGetTime()*64 + pos->rotation), glm::vec3(0.0f, 0.0f, 1.0f));
 
 			// Scale to size
 			model = glm::scale(model, glm::vec3(sprite->width, sprite->height, 1.0f));

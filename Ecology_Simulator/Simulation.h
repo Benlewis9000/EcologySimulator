@@ -29,6 +29,8 @@ class Simulation {
 	void init();
 public:
 	Simulation(int width = 1280, int height = 720);
+	inline unsigned int getWidth();
+	inline unsigned int getHeight();
 	inline GLFWwindow* getWindow();
 	inline const glm::mat4 getProjection();
 	inline EntityManager* getEntityManager();
@@ -37,6 +39,28 @@ public:
 	inline Shader* getShader();
 
 };
+
+/**
+ * Get the width of the window.
+ * 
+ * @return window width
+ */
+inline unsigned int Simulation::getWidth() {
+
+	return this->width;
+
+}
+
+/**
+ * Get the height of the window.
+ *
+ * @return window height
+ */
+inline unsigned int Simulation::getHeight() {
+
+	return this->height;
+
+}
 
 /**
  * Get a pointer to the contexts window.

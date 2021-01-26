@@ -2,6 +2,10 @@
 
 #include <iostream>
 
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+
 #include "Entity.h"
 #include "TextureManager.h"
 
@@ -11,7 +15,8 @@
 class Component {};
 
 // Test classes, NOT for usage 
-// Note: they do not adhere to ECS principles (C should not have behaviour, for example)
+// Note that they do not adhere to ECS principles (C should not have behaviour, for example)
+// TODO Not for use, so privatise and create public test method that uses them
 class A : public Component {
 	using Component::Component;
 };
@@ -38,14 +43,14 @@ public:
 	/**
 	 * Construct a position component (used to position an entity on screen).
 	 * 
-	 * @param xPos position along x axis
-	 * @param yPos position along y axis
+	 * @param pos 2D vector coordinate of form (x, y)
 	 * @param rotation in degrees
+	 * @param velocity of entity
 	 */
-	PositionComponent(float x, float y, float rotation) : x(x), y(y), rotation(rotation) {}
-	float x;
-	float y;
+	PositionComponent(glm::vec2 pos, float rotation, float velocity) : pos(pos), rotation(rotation), velocity(velocity) {}
+	glm::vec2 pos;
 	float rotation;
+	float velocity;
 };
 
 class VertexComponent : public Component {

@@ -23,7 +23,7 @@ public:
 
 	inline const std::set<Entity>* getEntities() const;
 
-	Entity generateTestSprite(float xPos, float yPos, float rotation);
+	Entity generateTestSprite(float xPos, float yPos, float rotation, float velocity);
 
 };
 

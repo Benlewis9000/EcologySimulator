@@ -11,6 +11,7 @@
 
 class ComponentManager {
 	// Member variables
+	// TODO Change to <Entity <CType, Component>> ? Means can iterate entities, and don't need a seperate list of entities. H: can't iterate components, have to iterate through all entities and look for component
 	std::map<std::type_index, std::map<Entity, std::unique_ptr<Component>>> components;
 
 public:
