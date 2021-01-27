@@ -13,6 +13,22 @@ TextureManager::TextureManager() {
 }
 
 /**
+ * Get the ID of a loaded texture.
+ *
+ * @param texture to get
+ */
+unsigned int TextureManager::getTexture(Texture texture) {
+
+	if (this->textures.find(texture) != textures.end()) {
+
+		return this->textures[texture];
+
+	}
+
+	return NULL;
+}
+
+/**
  * Initialise the texture manager.
  * 
  * @param pathGrass path to Texture::GRASS texture 

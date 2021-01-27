@@ -14,23 +14,7 @@ class TextureManager {
 	void init(std::string pathGrass, std::string pathLemming, std::string pathFox);
 public:
 	TextureManager();
-	inline unsigned int getTexture(Texture texture);
+	unsigned int getTexture(Texture texture);
 	void loadTexture(Texture texture, std::string source);
 
 };
-
-/**
- * Get the ID of a loaded texture.
- * 
- * @param texture to get
- */
-inline unsigned int TextureManager::getTexture(Texture texture) {
-
-	if (this->textures.find(texture) != textures.end()) {
-
-		return this->textures[texture];
-
-	}
-	
-	return NULL;
-}

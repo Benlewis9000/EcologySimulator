@@ -1,5 +1,11 @@
 #include "Shader.h"
 
+/**
+* Create program and link compiled shaders of sources given.
+*
+* @param vertexPath path to vertex shader source
+* @param fragmentPath path to fragment shader source
+*/
 Shader::Shader(const char* vertexPath, const char* fragmentPath) {
 
 	// Create program
@@ -14,6 +20,23 @@ Shader::Shader(const char* vertexPath, const char* fragmentPath) {
 
 }
 
+/**
+ * Get the program ID of this shader program.
+ *
+ * @return shader program ID
+ */
+unsigned int Shader::getID() {
+
+	return this->ID;
+
+}
+
+/**
+ * Load shader source, compile and attach to this program.
+ *
+ * @param path to shader source
+ * @param shaderType type of shader
+ */
 void Shader::loadShader(const char* path, GLenum shaderType) {
 
 	// Read in shader source code
@@ -62,6 +85,9 @@ void Shader::loadShader(const char* path, GLenum shaderType) {
 
 }
 
+/**
+ * Link attached shaders.
+ */
 void Shader::buildShader() {
 
 	// Link program
@@ -77,6 +103,9 @@ void Shader::buildShader() {
 
 }
 
+/**
+* Activate shader on OpenGL context.
+*/
 void Shader::enable() const {
 
 	glUseProgram(ID);

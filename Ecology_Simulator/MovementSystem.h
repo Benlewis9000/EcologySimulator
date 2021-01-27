@@ -1,5 +1,7 @@
 #pragma once
 
+#include <execution>
+
 #include <glm/gtx/rotate_vector.hpp>
 
 #include "EntityManager.h"

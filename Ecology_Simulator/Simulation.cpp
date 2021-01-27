@@ -19,6 +19,94 @@ Simulation::Simulation(int width, int height) : width(width), height(height) {
 }
 
 /**
+ * Get the width of the window.
+ *
+ * @return window width
+ */
+inline unsigned int Simulation::getWidth() {
+
+	return this->width;
+
+}
+
+/**
+ * Get the height of the window.
+ *
+ * @return window height
+ */
+inline unsigned int Simulation::getHeight() {
+
+	return this->height;
+
+}
+
+/**
+ * Get a pointer to the contexts window.
+ *
+ * @return GLFWindow* pointer to window
+ */
+inline GLFWwindow* Simulation::getWindow() {
+
+	return this->window;
+
+}
+
+/**
+ * Get the simulations projection matrix (map pixels to NDC).
+ *
+ * @return glm::mat4 the projection matrix
+ */
+inline const glm::mat4 Simulation::getProjection() {
+
+	return this->projection;
+
+}
+
+/**
+ * Get a pointer to the entity manager.
+ *
+ * @return EntityManager* pointer to the entity manager
+ */
+inline EntityManager* Simulation::getEntityManager() {
+
+	return this->entityMgr.get();
+
+}
+
+/**
+ * Get a pointer to the component manager.
+ *
+ * @return ComponentManager* ponter to component manager
+ */
+inline ComponentManager* Simulation::getComponentManager() {
+
+	return this->componentMgr.get();
+
+}
+
+/**
+ * Get a pointer to the texture manager.
+ *
+ * @return TextureManager* pointer to texture manager
+ */
+inline TextureManager* Simulation::getTextureManager() {
+
+	return this->textureMgr.get();
+
+}
+
+/**
+ * Get a pointer to the shader.
+ *
+ * @return Shader* pointer to the shader
+ */
+inline Shader* Simulation::getShader() {
+
+	return this->shader.get();
+
+}
+
+/**
  * Initialise OpenGL context, dependencies and window, or exit application.
  */
 void Simulation::init() {
@@ -31,7 +119,7 @@ void Simulation::init() {
 	// Prevent resize
 	glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 	// Anti-aliasing
-	glfwWindowHint(GLFW_SAMPLES, 4);
+	glfwWindowHint(GLFW_SAMPLES, 16);
 
 	// Create a window and bind to context (exit on failure)
 	this->window = (glfwCreateWindow(this->width, this->height, "Ecology Simulation", NULL, NULL));

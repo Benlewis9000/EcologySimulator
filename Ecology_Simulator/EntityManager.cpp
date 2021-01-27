@@ -1,11 +1,33 @@
 #include "EntityManager.h"
 
 /**
+ * Construct an EntityManager.
+ *
+ * @param componentMgr pointer to a ComponentManager to register an entities components with
+ */
+inline EntityManager::EntityManager(ComponentManager* componentMgr) : componentMgr(componentMgr) {
+
+	this->entities = std::make_unique<std::set<Entity>>();
+
+}
+
+/**
+ * Get an immutable pointer to the managers entities.
+ *
+ * @return std::set<Entity>* a pointer to the managers entities
+ */
+inline const std::set<Entity>* EntityManager::getEntities() const {
+
+	return this->entities.get();
+
+}
+
+/**
  * Create a new Entity and register it with the calling manager.
  * 
  * @return Entity created
  */
-Entity EntityManager::newEntity() {
+Entity EntityManager::createEntity() {
 
 	// Generate Entity (random ID)
 	std::default_random_engine e((unsigned int)this->rd());
@@ -17,7 +39,7 @@ Entity EntityManager::newEntity() {
 }
 
 /**
- * Generate an entity suitable only to test the render system.
+ * Generate an entity suitable only for testing.
  * 
  * @param xPos position along x axis
  * @param yPos position along y axis
@@ -27,7 +49,7 @@ Entity EntityManager::newEntity() {
 Entity EntityManager::generateTestSprite(float xPos, float yPos, float rotation, float velocity) {
 
 	// Create new entity
-	const Entity entity = this->newEntity();
+	const Entity entity = this->createEntity();
 	
 	// Declare vertices
 	float vertices[] = {
