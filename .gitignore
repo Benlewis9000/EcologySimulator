@@ -338,3 +338,5 @@ ASALocalRun/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
+/Ecology_Simulator/CollisionSystem.cpp
+/Ecology_Simulator/CollisionSystem.h

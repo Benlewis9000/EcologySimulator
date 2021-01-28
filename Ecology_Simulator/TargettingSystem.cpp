@@ -46,13 +46,16 @@ void updateEntityTargets(Simulation* sim) {
 							shortest = dist;
 
 							// If unsaturated, and target is one lower on food chain, pursue food
-							if (livComp->energy < targComp->saturation && targetLivComp->species == livComp->species - 1) {
+							// OR if saturated, and target is equal species, pursue mate
+							if ( (livComp->energy < targComp->saturated && targetLivComp->species == livComp->species - 1)
+								|| (livComp->energy > targComp->saturated && targetLivComp->species == livComp->species) ){
 
-								// Calculate rotation to point at target, and asign if within FOV
+								// Calculate rotation to point at target, and assign if within FOV
 								float r = calculateTargetRotation(targComp, posComp, targetPosComp);
 								if (std::abs(posComp->rotation - r) < targComp->fov / 2.0f) posComp->rotation = r;
 
 							}
+							/*
 							// Else saturated, and target is equal species, pursue mate
 							else if (livComp->energy > targComp->saturation && targetLivComp->species == livComp->species) {
 
@@ -61,6 +64,7 @@ void updateEntityTargets(Simulation* sim) {
 								if (std::abs(posComp->rotation - r) < targComp->fov / 2.0f) posComp->rotation = r;
 
 							}
+							*/
 
 						}
 

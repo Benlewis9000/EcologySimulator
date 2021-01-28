@@ -57,6 +57,9 @@
     <ClCompile Include="TargettingSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CollisionSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -95,6 +98,9 @@
     <ClInclude Include="TargettingSystem.h">
       <Filter>Header Files\System</Filter>
     </ClInclude>
+    <ClInclude Include="CollisionSystem.h">
+      <Filter>Header Files\System</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="vertex.glsl">
@@ -106,6 +112,12 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\..\..\Documents\fox-prototype.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Documents\lemming-prototype.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Documents\grass-prototype.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

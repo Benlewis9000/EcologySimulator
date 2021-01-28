@@ -39,8 +39,8 @@ void TextureManager::init(std::string pathGrass, std::string pathLemming, std::s
 
 	// Todo: draw and add the grass and lemming textures
 
-	//this->loadTexture(Texture::GRASS, pathGrass);
-	//this->loadTexture(Texture::LEMMING, pathLemming);
+	this->loadTexture(Texture::GRASS, pathGrass);
+	this->loadTexture(Texture::LEMMING, pathLemming);
 	this->loadTexture(Texture::FOX, pathFox);
 
 }

@@ -10,7 +10,7 @@
 void renderEntities(Simulation* sim) {
 
 	// Set background colour
-	glClearColor(0.0f, 0.5f, 0.8f, 1.0f);
+	glClearColor(111.0f/255.0f, 156/255.0f, 79/255.0f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT);
 
 	// Access simulations members

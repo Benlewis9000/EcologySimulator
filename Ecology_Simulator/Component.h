@@ -108,11 +108,12 @@ class TargetComponent : public Component {
 public:
 	/**
 	 * Construct a target component (used to assign a target entity to pursue).
+	 * TODO fill in params
 	 */
-	TargetComponent(float saturation, float radius, float fov) : saturation(saturation), radius(radius), fov(fov) {}
-	float saturation;
+	TargetComponent(float saturated, float radius, float fov) : saturated(saturated), radius(radius), fov(fov) {}
+	float saturated;
 	float radius;
 	float fov;
 };
 
-// TODO flee component: like targetting, but set a boolean to true if sees a predator, 
+// TODO flee component: like targetting, but set a boolean to true if sees a predator, H will cause lag unless systems moved to the one n^2 loop model

@@ -153,6 +153,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CollisionSystem.cpp" />
     <ClCompile Include="ComponentManager.cpp" />
     <ClCompile Include="EntityManager.cpp" />
     <ClCompile Include="glad.c" />
@@ -166,6 +167,7 @@
     <ClCompile Include="TextureManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CollisionSystem.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="ComponentManager.h" />
     <ClInclude Include="Entity.h" />
@@ -185,6 +187,8 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\..\..\Documents\fox-prototype.png" />
+    <Image Include="..\..\..\..\Documents\grass-prototype.png" />
+    <Image Include="..\..\..\..\Documents\lemming-prototype.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
