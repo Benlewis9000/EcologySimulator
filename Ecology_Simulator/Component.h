@@ -85,11 +85,34 @@ public:
 
 class LivingComponent : public Component {
 public:
+
+	/**
+	 * Species type (used by Targetting and Collision systems for feeding and breeding).
+	 * Species are ordered in an ascending food chain, e.g. GRASS is at the bottom, FOX is at the top,
+	 * thus listed first and last respectively.
+	 */
+	enum Species { GRASS, LEMMING, FOX };
+
 	/**
 	 * Construct a living component (used to monitor energy level of an entity).
 	 * 
+	 * @param species type entity represents
 	 * @param energy to start with
 	 */
-	LivingComponent(float energy) : energy(energy) {}
+	LivingComponent(Species species, float energy) : species(species), energy(energy) {}
+	Species species;
 	float energy;
 };
+
+class TargetComponent : public Component {
+public:
+	/**
+	 * Construct a target component (used to assign a target entity to pursue).
+	 */
+	TargetComponent(float saturation, float radius, float fov) : saturation(saturation), radius(radius), fov(fov) {}
+	float saturation;
+	float radius;
+	float fov;
+};
+
+// TODO flee component: like targetting, but set a boolean to true if sees a predator, 

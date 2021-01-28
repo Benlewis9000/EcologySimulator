@@ -23,7 +23,7 @@ Simulation::Simulation(int width, int height) : width(width), height(height) {
  *
  * @return window width
  */
-inline unsigned int Simulation::getWidth() {
+unsigned int Simulation::getWidth() {
 
 	return this->width;
 
@@ -34,7 +34,7 @@ inline unsigned int Simulation::getWidth() {
  *
  * @return window height
  */
-inline unsigned int Simulation::getHeight() {
+unsigned int Simulation::getHeight() {
 
 	return this->height;
 
@@ -45,7 +45,7 @@ inline unsigned int Simulation::getHeight() {
  *
  * @return GLFWindow* pointer to window
  */
-inline GLFWwindow* Simulation::getWindow() {
+GLFWwindow* Simulation::getWindow() {
 
 	return this->window;
 
@@ -56,7 +56,7 @@ inline GLFWwindow* Simulation::getWindow() {
  *
  * @return glm::mat4 the projection matrix
  */
-inline const glm::mat4 Simulation::getProjection() {
+const glm::mat4 Simulation::getProjection() {
 
 	return this->projection;
 
@@ -67,7 +67,7 @@ inline const glm::mat4 Simulation::getProjection() {
  *
  * @return EntityManager* pointer to the entity manager
  */
-inline EntityManager* Simulation::getEntityManager() {
+EntityManager* Simulation::getEntityManager() {
 
 	return this->entityMgr.get();
 
@@ -78,7 +78,7 @@ inline EntityManager* Simulation::getEntityManager() {
  *
  * @return ComponentManager* ponter to component manager
  */
-inline ComponentManager* Simulation::getComponentManager() {
+ComponentManager* Simulation::getComponentManager() {
 
 	return this->componentMgr.get();
 
@@ -89,7 +89,7 @@ inline ComponentManager* Simulation::getComponentManager() {
  *
  * @return TextureManager* pointer to texture manager
  */
-inline TextureManager* Simulation::getTextureManager() {
+TextureManager* Simulation::getTextureManager() {
 
 	return this->textureMgr.get();
 
@@ -100,7 +100,7 @@ inline TextureManager* Simulation::getTextureManager() {
  *
  * @return Shader* pointer to the shader
  */
-inline Shader* Simulation::getShader() {
+Shader* Simulation::getShader() {
 
 	return this->shader.get();
 

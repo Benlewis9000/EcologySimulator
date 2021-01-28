@@ -5,7 +5,7 @@
  *
  * @param componentMgr pointer to a ComponentManager to register an entities components with
  */
-inline EntityManager::EntityManager(ComponentManager* componentMgr) : componentMgr(componentMgr) {
+EntityManager::EntityManager(ComponentManager* componentMgr) : componentMgr(componentMgr) {
 
 	this->entities = std::make_unique<std::set<Entity>>();
 
@@ -16,7 +16,7 @@ inline EntityManager::EntityManager(ComponentManager* componentMgr) : componentM
  *
  * @return std::set<Entity>* a pointer to the managers entities
  */
-inline const std::set<Entity>* EntityManager::getEntities() const {
+const std::set<Entity>* EntityManager::getEntities() const {
 
 	return this->entities.get();
 
@@ -96,7 +96,8 @@ Entity EntityManager::generateTestSprite(float xPos, float yPos, float rotation,
 	componentMgr->setComponent<PositionComponent>(entity, std::make_unique<PositionComponent>(glm::vec2(xPos, yPos), rotation, velocity));
 	componentMgr->setComponent<VertexComponent>(entity, std::make_unique<VertexComponent>(sizeof(indices) / sizeof(float), VBO, VAO));
 	componentMgr->setComponent<SpriteComponent>(entity, std::make_unique<SpriteComponent>(Texture::FOX, 100.0f, 200.0f));
-	componentMgr->setComponent<LivingComponent>(entity, std::make_unique<LivingComponent>(20.0f));
+	componentMgr->setComponent<LivingComponent>(entity, std::make_unique<LivingComponent>(LivingComponent::Species::FOX, 20000.0f));
+	componentMgr->setComponent<TargetComponent>(entity, std::make_unique<TargetComponent>(0.0f, 500.0f, 170.0f));
 
 	return entity;
 

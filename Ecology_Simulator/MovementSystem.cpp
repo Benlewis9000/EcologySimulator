@@ -7,6 +7,8 @@
  */
 void moveEntities(Simulation* sim) {
 
+	// TODO also check if entity has TargetComponent. If it does, pursue target.
+
 	const EntityManager* const entityMgr = sim->getEntityManager();
 	ComponentManager* const componentMgr = sim->getComponentManager();
 
