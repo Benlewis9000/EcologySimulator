@@ -38,17 +38,22 @@ inline const void C::hello() const {
 }
 
 
-class PositionComponent : public Component {
+class PhysicalComponent : public Component {
 public:
 	/**
 	 * Construct a position component (used to position an entity on screen).
 	 * 
 	 * @param pos 2D vector coordinate of form (x, y)
+	 * @param width of sprite
+	 * @param height of sprite
 	 * @param rotation in degrees
 	 * @param velocity of entity
 	 */
-	PositionComponent(glm::vec2 pos, float rotation, float velocity) : pos(pos), rotation(rotation), velocity(velocity) {}
+	PhysicalComponent(glm::vec2 pos, float rotation, float velocity, float width, float height)
+		: pos(pos), rotation(rotation), velocity(velocity), width(width), height(height) {}
 	glm::vec2 pos;
+	float width;
+	float height;
 	float rotation;
 	float velocity;
 };
@@ -62,7 +67,8 @@ public:
 	 * @param VBO ID of associated vertex buffer object
 	 * @param VAO ID of associated vertex array object
 	 */
-	VertexComponent(int numVertices, unsigned int VBO, unsigned int VAO) : numVertices(numVertices), VBO(VBO), VAO(VAO) {}
+	VertexComponent(int numVertices, unsigned int VBO, unsigned int VAO) 
+		: numVertices(numVertices), VBO(VBO), VAO(VAO) {}
 	int numVertices;
 	unsigned int VBO;
 	unsigned int VAO;
@@ -74,19 +80,16 @@ public:
 	 * Construct a sprite component (used to render texture of an entity).
 	 * 
 	 * @param Texture type for entity
-	 * @param width of sprite
-	 * @param height of sprite
 	 */
-	SpriteComponent(Texture texture, float width, float height) : texture(texture), width(width), height(height) {}
+	SpriteComponent(Texture texture) 
+		: texture(texture) {}
 	Texture texture;
-	float width;
-	float height;
 };
 
 class LivingComponent : public Component {
 public:
 
-	/**
+	/** TODO abstract this to it's own proper enum class for universal data/use
 	 * Species type (used by Targetting and Collision systems for feeding and breeding).
 	 * Species are ordered in an ascending food chain, e.g. GRASS is at the bottom, FOX is at the top,
 	 * thus listed first and last respectively.
@@ -99,18 +102,21 @@ public:
 	 * @param species type entity represents
 	 * @param energy to start with
 	 */
-	LivingComponent(Species species, float energy) : species(species), energy(energy) {}
+	LivingComponent(Species species, float energy) 
+		: species(species), energy(energy) {}
 	Species species;
 	float energy;
 };
 
+// TODO rename to BehaviourComponent?
 class TargetComponent : public Component {
 public:
 	/**
 	 * Construct a target component (used to assign a target entity to pursue).
 	 * TODO fill in params
 	 */
-	TargetComponent(float saturated, float radius, float fov) : saturated(saturated), radius(radius), fov(fov) {}
+	TargetComponent(float saturated, float radius, float fov) 
+		: saturated(saturated), radius(radius), fov(fov) {}
 	float saturated;
 	float radius;
 	float fov;

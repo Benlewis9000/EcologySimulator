@@ -10,12 +10,14 @@
 #include "MovementSystem.h"
 #include "RenderSystem.h"
 #include "TargettingSystem.h"
+#include "CollisionSystem.h"
+#include "SystemManager.h"
 
 int main() {
 
     //testSetComponent();
 
-    std::unique_ptr<Simulation> sim = std::make_unique<Simulation>(1280, 720);
+    std::unique_ptr<Simulation> sim = std::make_unique<Simulation>(1920, 1080);
 
     std::random_device rd;
     std::default_random_engine e(rd());
@@ -32,7 +34,7 @@ int main() {
     sim.get()->getEntityManager()->generateTestSprite(900.0f, 370.0f, 45.0f, 2.0f);
     */
 
-    for (int i = 0; i < 10; i++)
+    for (int i = 0; i < 5; i++)
         sim.get()->getEntityManager()->createGrassEntity(
             std::fmod(e(), sim.get()->getWidth()),
             std::fmod(e(), sim.get()->getHeight()),
@@ -41,7 +43,7 @@ int main() {
         );
 
     
-    for (int i = 0; i < 5; i++)
+    for (int i = 0; i < 10; i++)
         sim.get()->getEntityManager()->createLemmingEntity(
             std::fmod(e(), sim.get()->getWidth()),
             std::fmod(e(), sim.get()->getHeight()),
@@ -49,7 +51,7 @@ int main() {
             2.0f, 25.0f, 50.0f, 40.0f, 50.0f, 250.0f, 240.0f
         );
 
-    for (int i = 0; i < 3; i++)
+    for (int i = 0; i < 10; i++)
         sim.get()->getEntityManager()->createFoxEntity(
             std::fmod(e(), sim.get()->getWidth()),
             std::fmod(e(), sim.get()->getHeight()),
@@ -60,9 +62,7 @@ int main() {
     // Main loop
     while (!glfwWindowShouldClose(sim.get()->getWindow())) {
 
-        updateEntityTargets(sim.get());
-        moveEntities(sim.get());
-        renderEntities(sim.get());
+        runSystems(sim.get());
 
         glfwPollEvents();
     }

@@ -2,5 +2,5 @@
 
 #include "Simulation.h"
 
-void updateEntityTargets(Simulation* sim);
-float calculateTargetRotation(const TargetComponent* targComp, const PositionComponent* posComp, const PositionComponent* targetPosComp);
+void updateTarget(PhysicalComponent* entityPhys, LivingComponent* entityLiv, TargetComponent* entityTarg, PhysicalComponent* targPhys, LivingComponent* targLiv);
+float calculateTargetRotation(const PhysicalComponent* entityPhys, const PhysicalComponent* targetPhys);

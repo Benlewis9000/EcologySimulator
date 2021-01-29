@@ -4,4 +4,4 @@
 #include "Entity.h"
 #include "Component.h"
 
-void renderEntities(Simulation* sim);
+void renderEntity(PhysicalComponent* entityPhys, VertexComponent* entityVert, SpriteComponent* entitySprite, Shader* const shader, TextureManager* textureManager, GLFWwindow* window);

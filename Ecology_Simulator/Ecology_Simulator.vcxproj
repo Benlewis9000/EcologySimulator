@@ -163,6 +163,7 @@
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Simulation.cpp" />
     <ClCompile Include="stb_image.cpp" />
+    <ClCompile Include="SystemManager.cpp" />
     <ClCompile Include="TargettingSystem.cpp" />
     <ClCompile Include="TextureManager.cpp" />
   </ItemGroup>
@@ -178,6 +179,7 @@
     <ClInclude Include="Shader.h" />
     <ClInclude Include="Simulation.h" />
     <ClInclude Include="stb_image.h" />
+    <ClInclude Include="SystemManager.h" />
     <ClInclude Include="TargettingSystem.h" />
     <ClInclude Include="TextureManager.h" />
   </ItemGroup>

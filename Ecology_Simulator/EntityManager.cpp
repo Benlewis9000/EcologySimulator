@@ -47,8 +47,8 @@ Entity EntityManager::createGrassEntity(float xPos, float yPos, float rotation, 
 
 	// Build and attach relevant components to entity
 	componentMgr->setComponent<VertexComponent>(entity, std::make_unique<VertexComponent>(size, VBO, VAO));
-	componentMgr->setComponent<PositionComponent>(entity, std::make_unique<PositionComponent>(glm::vec2(xPos, yPos), rotation, velocity));
-	componentMgr->setComponent<SpriteComponent>(entity, std::make_unique<SpriteComponent>(Texture::GRASS, width, height));
+	componentMgr->setComponent<PhysicalComponent>(entity, std::make_unique<PhysicalComponent>(glm::vec2(xPos, yPos), rotation, velocity, width, height));
+	componentMgr->setComponent<SpriteComponent>(entity, std::make_unique<SpriteComponent>(Texture::GRASS));
 	componentMgr->setComponent<LivingComponent>(entity, std::make_unique<LivingComponent>(LivingComponent::Species::GRASS, energy));
 
 	return entity;
@@ -64,8 +64,8 @@ Entity EntityManager::createLemmingEntity(float xPos, float yPos, float rotation
 
 	// Build and attach relevant components to entity
 	componentMgr->setComponent<VertexComponent>(entity, std::make_unique<VertexComponent>(size, VBO, VAO));
-	componentMgr->setComponent<PositionComponent>(entity, std::make_unique<PositionComponent>(glm::vec2(xPos, yPos), rotation, velocity));
-	componentMgr->setComponent<SpriteComponent>(entity, std::make_unique<SpriteComponent>(Texture::LEMMING, width, height));
+	componentMgr->setComponent<PhysicalComponent>(entity, std::make_unique<PhysicalComponent>(glm::vec2(xPos, yPos), rotation, velocity, width, height));
+	componentMgr->setComponent<SpriteComponent>(entity, std::make_unique<SpriteComponent>(Texture::LEMMING));
 	componentMgr->setComponent<LivingComponent>(entity, std::make_unique<LivingComponent>(LivingComponent::Species::LEMMING, energy));
 	componentMgr->setComponent<TargetComponent>(entity, std::make_unique<TargetComponent>(saturated, radius, fov));
 
@@ -82,8 +82,8 @@ Entity EntityManager::createFoxEntity(float xPos, float yPos, float rotation, fl
 
 	// Build and attach relevant components to entity
 	componentMgr->setComponent<VertexComponent>(entity, std::make_unique<VertexComponent>(size, VBO, VAO));
-	componentMgr->setComponent<PositionComponent>(entity, std::make_unique<PositionComponent>(glm::vec2(xPos, yPos), rotation, velocity));
-	componentMgr->setComponent<SpriteComponent>(entity, std::make_unique<SpriteComponent>(Texture::FOX, width, height));
+	componentMgr->setComponent<PhysicalComponent>(entity, std::make_unique<PhysicalComponent>(glm::vec2(xPos, yPos), rotation, velocity, width, height));
+	componentMgr->setComponent<SpriteComponent>(entity, std::make_unique<SpriteComponent>(Texture::FOX));
 	componentMgr->setComponent<LivingComponent>(entity, std::make_unique<LivingComponent>(LivingComponent::Species::FOX, energy));
 	componentMgr->setComponent<TargetComponent>(entity, std::make_unique<TargetComponent>(saturated, radius, fov));
 
@@ -147,9 +147,9 @@ Entity EntityManager::generateTestSprite(float xPos, float yPos, float rotation,
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
 	// Build and attach relevant components to entity
-	componentMgr->setComponent<PositionComponent>(entity, std::make_unique<PositionComponent>(glm::vec2(xPos, yPos), rotation, velocity));
+	componentMgr->setComponent<PhysicalComponent>(entity, std::make_unique<PhysicalComponent>(glm::vec2(xPos, yPos), rotation, velocity, 100.0f, 200.0f));
 	componentMgr->setComponent<VertexComponent>(entity, std::make_unique<VertexComponent>(sizeof(indices) / sizeof(float), VBO, VAO));
-	componentMgr->setComponent<SpriteComponent>(entity, std::make_unique<SpriteComponent>(Texture::FOX, 50.0f, 100.0f));
+	componentMgr->setComponent<SpriteComponent>(entity, std::make_unique<SpriteComponent>(Texture::FOX));
 	componentMgr->setComponent<LivingComponent>(entity, std::make_unique<LivingComponent>(LivingComponent::Species::FOX, 20000.0f));
 	componentMgr->setComponent<TargetComponent>(entity, std::make_unique<TargetComponent>(0.0f, 800.0f, 170.0f));
 
