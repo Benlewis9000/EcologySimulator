@@ -3,18 +3,63 @@
 /**
  * Construct a Simulation.
  * 
- * @param width of window in pixels
- * @param height of window in pixels
+ * @param configPath path to a JSON configuration file
  */
-Simulation::Simulation(int width, int height) : width(width), height(height) {
+Simulation::Simulation(std::string configPath) : rand(std::random_device{}()) {
 
-	Simulation::init();
+	using namespace nlohmann;
 
+	// Try to load config
+	std::ifstream file(configPath);
+	if (file.is_open()) {
+
+		file >> config;
+
+	}
+	else {
+
+		std::cerr << "Error: could not find JSON configuration \"" << configPath << "\"." << std::endl;
+		exit(-1);
+
+	}
+
+	try {
+
+		// Get window size from config..
+		this->width = config.at("windowWidth");
+		this->height = config.at("windowHeight");
+
+	}
+	catch (json::out_of_range e) {
+
+		// ..or set defaults (720p)
+		std::cerr << "Error: could not find \"windowWidth\" and \"windowHeight\" in the configuration." << std::endl;
+		std::cerr << "Setting window size to 1280p * 720p." << std::endl;
+		this->width = 1280;
+		this->height = 720;
+
+	}
+
+	// Initialise OpenGL context
+	Simulation::initOpenGL();
+
+	// Initialise member variables
 	this->projection = glm::ortho(0.0f, (float)this->width, (float)this->height, 0.0f);
 	this->componentMgr = std::make_unique<ComponentManager>();
 	this->entityMgr = std::make_unique<EntityManager>(this->componentMgr.get());
 	this->textureMgr = std::make_unique<TextureManager>();
 	this->shader = std::make_unique<Shader>("vertex.glsl", "fragment.glsl");
+
+}
+
+/**
+ * Get the JSON configuration for the simulation.
+ * 
+ * @return the configuration 
+ */
+const nlohmann::json Simulation::getConfig() {
+
+	return this->config;
 
 }
 
@@ -59,6 +104,23 @@ GLFWwindow* Simulation::getWindow() {
 const glm::mat4 Simulation::getProjection() {
 
 	return this->projection;
+
+}
+
+std::random_device& Simulation::getRd() {
+
+	return this->rd;
+
+}
+
+/**
+ * Get the simulations random engine.
+ * 
+ * @return random engine
+ */
+std::default_random_engine& Simulation::getRand() {
+
+	return this->rand;
 
 }
 
@@ -109,7 +171,7 @@ Shader* Simulation::getShader() {
 /**
  * Initialise OpenGL context, dependencies and window, or exit application.
  */
-void Simulation::init() {
+void Simulation::initOpenGL() {
 
 	// Initialise GLFW 3.3 and OpenGL core profile
 	glfwInit();
@@ -146,5 +208,109 @@ void Simulation::init() {
 
 	// Set random seed
 	std::srand(glfwGetTime());
+
+}
+
+void Simulation::generateEntities() {
+
+	using namespace nlohmann;
+
+	json entities;
+
+	// Load entity data from config
+	try {
+	
+		entities = config.at("entities");
+	
+	}
+	// Exit if entity data not defined
+	catch (json::out_of_range e) {
+
+		std::cerr << "Error: could not load \"entities\" from configuration." << std::endl
+			<< "Exiting program..." << std::endl;
+		exit(-1);
+
+	}
+
+	// Generate Grasss
+	try {
+
+		json grass = entities.at("grass");
+		for (int i = 0; i < grass.at("quantity"); i++)
+			getEntityManager()->registerEntity(
+				getEntityManager()->createLivingEntity(
+					std::fmod(rand(), getWidth()),
+					std::fmod(rand(), getHeight()),
+					std::fmod(rand(), 360.0f),
+					0.0f,
+					40.0f, 40.0f,
+					Texture::GRASS,
+					LivingComponent::Species::GRASS,
+					grass.at("energy")
+				));
+
+	}
+	catch (json::out_of_range e) {
+
+		std::cerr << "Error: could not load data for grass in the configuration." << std::endl
+			<< "This entity will be ignored..." << std::endl;
+
+	}
+
+	// Generate Lemmings
+	try {
+
+		json lemming = entities.at("lemming");
+		for (int i = 0; i < lemming.at("quantity"); i++)
+			getEntityManager()->registerEntity(
+				getEntityManager()->createBehaviouralEntity(
+					std::fmod(rand(), getWidth()),
+					std::fmod(rand(), getHeight()),
+					std::fmod(rand(), 360.0f),
+					lemming.at("velocity"),
+					25.0f, 50.0f,
+					Texture::LEMMING,
+					LivingComponent::Species::LEMMING,
+					lemming.at("energy"),
+					lemming.at("saturated"),
+					lemming.at("range"),
+					lemming.at("fov")
+				));
+
+	}
+	catch (json::out_of_range e) {
+
+		std::cerr << "Error: could not load data for lemmings in the configuration." << std::endl
+			<< "This entity will be ignored..." << std::endl;
+
+	}
+
+	try {
+
+		// Generate Foxes
+		json fox = entities.at("fox");
+		for (int i = 0; i < fox.at("quantity"); i++)
+			getEntityManager()->registerEntity(
+				getEntityManager()->createBehaviouralEntity(
+					std::fmod(rand(), getWidth()),
+					std::fmod(rand(), getHeight()),
+					std::fmod(rand(), 360.0f),
+					fox.at("velocity"),
+					75.0f, 150.0f,
+					Texture::FOX,
+					LivingComponent::Species::FOX,
+					fox.at("energy"),
+					fox.at("saturated"),
+					fox.at("range"),
+					fox.at("fov")
+				));
+
+	}
+	catch (json::out_of_range e) {
+
+		std::cerr << "Error: could not load data for foxes in the configuration." << std::endl
+			<< "This entity will be ignored..." << std::endl;
+
+	}
 
 }
