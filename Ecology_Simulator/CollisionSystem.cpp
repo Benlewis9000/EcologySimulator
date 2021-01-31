@@ -150,9 +150,9 @@ void testRaycast() {
  */
 void testEntityCollision(Simulation* sim) {
 
-	Entity grass = sim->getEntityManager()->createGrassEntity(200.0f, 200.0f, 0.0f, 0.0f, 40.0f, 40.0f, 10.0f);
-	Entity lemmingA = sim->getEntityManager()->createLemmingEntity(230.0f, 200.0f, 270.0f, 0.0f, 25.0f, 50.0f, 20.0f, 40.0f, 250.0f, 170.0f);
-	Entity lemmingB = sim->getEntityManager()->createLemmingEntity(170.0f, 200.0f, 0.0f, 0.0f, 25.0f, 50.0f, 40.0f, 40.0f, 250.0f, 170.0f);
+	Entity grass = sim->getEntityManager()->createLivingEntity(200.0f, 200.0f, 0.0f, 0.0f, 40.0f, 40.0f, Texture::GRASS, LivingComponent::GRASS, 10.0f);
+	Entity lemmingA = sim->getEntityManager()->createBehaviouralEntity(230.0f, 200.0f, 270.0f, 0.0f, 25.0f, 50.0f, Texture::LEMMING, LivingComponent::LEMMING, 20.0f, 40.0f, 250.0f, 170.0f);
+	Entity lemmingB = sim->getEntityManager()->createBehaviouralEntity(170.0f, 200.0f, 0.0f, 0.0f, 25.0f, 50.0f, Texture::LEMMING, LivingComponent::LEMMING, 40.0f, 40.0f, 250.0f, 170.0f);
 
 	std::cout << "Test checkCollision():" << std::endl;
 	std::cout << "entity (expected): result" << std::endl;

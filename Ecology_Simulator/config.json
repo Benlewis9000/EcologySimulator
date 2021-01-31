@@ -1,0 +1,27 @@
+{
+  "windowWidth": 1280,
+  "windowHeight": 720,
+  "grassSpawnrate": 0.01,
+  "entities": {
+    "grass": {
+      "quantity": 50,
+      "energy": 2.0
+    },
+    "lemming": {
+      "quantity": 15,
+      "velocity": 1.0,
+      "energy": 4.0,
+      "saturated": 4.0,
+      "range": 300.0,
+      "fov": 270.0
+    },
+    "fox": {
+      "quantity": 4,
+      "velocity": 2.0,
+      "energy": 12.0,
+      "saturated": 12.0,
+      "range": 300.0,
+      "fov": 180.0
+    }
+  }
+}

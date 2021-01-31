@@ -1,7 +1,7 @@
 #pragma once
 
 #include <glm/gtx/rotate_vector.hpp>
-#include < glm/gtx/intersect.hpp>
+#include <glm/gtx/intersect.hpp>
 
 #include "Simulation.h"
 

@@ -6,23 +6,28 @@
 #include <type_traits>
 #include <memory>
 
+#include <Tracy.hpp>
+#include "robin_hood.h"
+
 #include "Component.h"
 #include "Entity.h"
 
 class ComponentManager {
 	// Member variables
 	// TODO Change to <Entity <CType, Component>> ? Means can iterate entities, and don't need a seperate list of entities. H: can't iterate components, have to iterate through all entities and look for component
-	std::unordered_map<std::type_index, std::map<Entity, std::unique_ptr<Component>>> components;
+	robin_hood::unordered_map<std::type_index, std::map<Entity, std::unique_ptr<Component>>> components;
 
 public:
+
+	void deleteEntity(Entity entity);
 	
 	/**
- * Assign a component of type V to an Entity (overrides existing component if one already exists).
- *
- * @tparam V the type of the Components derived class
- * @param entity to assign component to
- * @param component to assign to entity
- */
+	 * Assign a component of type V to an Entity (overrides existing component if one already exists).
+	 *
+	 * @tparam V the type of the Components derived class
+	 * @param entity to assign component to
+	 * @param component to assign to entity
+	 */
 	template <typename V>
 	inline void setComponent(const Entity entity, std::unique_ptr<V> component) {
 
@@ -110,4 +115,4 @@ public:
 	}
 };
 
-void testSetComponent();
+void testComponentManager();

@@ -1,5 +1,7 @@
 #pragma once
 
+#include <Tracy.hpp>
+
 #include "RenderSystem.h"
 
 /** TODO update docs

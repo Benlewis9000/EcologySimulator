@@ -16,7 +16,7 @@ bool eatEntity(LivingComponent* entityLiv, PhysicalComponent* entityPhys, Behavi
 		if (entityLiv->energy < entityBvr->saturated && entityLiv->species == targetLiv->species + 1) {
 
 			// Transfer energy from target to entity
-			entityLiv->energy = targetLiv->energy;
+			entityLiv->energy = entityLiv->energy + targetLiv->energy;
 			targetLiv->energy = 0.0f;
 
 			return true;

@@ -80,14 +80,14 @@
     <LinkIncremental>true</LinkIncremental>
     <CodeAnalysisRuleSet>MixedRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <RunCodeAnalysis>true</RunCodeAnalysis>
-    <IncludePath>C:\Users\benja\MSVS_Libs\include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\benja\source\repos\Ecology_Simulator\tracy;C:\Users\benja\MSVS_Libs\include;C:\Users\benja\source\repos\Ecology_Simulator\tracy;$(IncludePath);$(SolutionDir)submodules\Tracy;C:\Users\benja\source\repos\Ecology_Simulator\tracy</IncludePath>
     <LibraryPath>C:\Users\benja\MSVS_Libs\libs;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <CodeAnalysisRuleSet>MixedRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <RunCodeAnalysis>true</RunCodeAnalysis>
-    <IncludePath>C:\Users\benja\MSVS_Libs\include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\benja\source\repos\Ecology_Simulator\tracy;C:\Users\benja\MSVS_Libs\include;$(IncludePath);$(SolutionDir)submodules\Tracy;C:\Users\benja\source\repos\Ecology_Simulator\tracy</IncludePath>
     <LibraryPath>C:\Users\benja\MSVS_Libs\libs;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -122,10 +122,11 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>TRACY_ENABLE;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <EnablePREfast>true</EnablePREfast>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -139,10 +140,11 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>TRACY_ENABLE;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <EnablePREfast>true</EnablePREfast>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -153,44 +155,55 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\tracy\TracyClient.cpp" />
+    <ClCompile Include="BreedingSystem.cpp" />
     <ClCompile Include="CollisionSystem.cpp" />
     <ClCompile Include="ComponentManager.cpp" />
     <ClCompile Include="EntityManager.cpp" />
+    <ClCompile Include="FeedingSystem.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MovementSystem.cpp" />
     <ClCompile Include="RenderSystem.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Simulation.cpp" />
+    <ClCompile Include="SpawningSystem.cpp" />
     <ClCompile Include="stb_image.cpp" />
     <ClCompile Include="SystemManager.cpp" />
     <ClCompile Include="TargettingSystem.cpp" />
     <ClCompile Include="TextureManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\tracy\Tracy.hpp" />
+    <ClInclude Include="BreedingSystem.h" />
     <ClInclude Include="CollisionSystem.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="ComponentManager.h" />
+    <ClInclude Include="FeedingSystem.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="EntityManager.h" />
+    <ClInclude Include="json.hpp" />
     <ClInclude Include="MovementSystem.h" />
     <ClInclude Include="RenderSystem.h" />
     <ClInclude Include="main.h" />
+    <ClInclude Include="robin_hood.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="Simulation.h" />
+    <ClInclude Include="SpawningSystem.h" />
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="SystemManager.h" />
     <ClInclude Include="TargettingSystem.h" />
     <ClInclude Include="TextureManager.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="config.json" />
     <None Include="fragment.glsl" />
     <None Include="vertex.glsl" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\..\..\..\Documents\fox-prototype.png" />
-    <Image Include="..\..\..\..\Documents\grass-prototype.png" />
-    <Image Include="..\..\..\..\Documents\lemming-prototype.png" />
+    <Image Include="fox-prototype.png" />
+    <Image Include="grass-prototype.png" />
+    <Image Include="lemming-prototype.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

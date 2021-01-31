@@ -5,9 +5,15 @@
  *
  * @param componentMgr pointer to a ComponentManager to register an entities components with
  */
-EntityManager::EntityManager(ComponentManager* componentMgr) : componentMgr(componentMgr) {
+EntityManager::EntityManager(ComponentManager* componentMgr) : componentMgr(componentMgr), rand(std::random_device{}()) {
 
 	this->entities = std::make_unique<std::set<Entity>>();
+
+}
+
+ComponentManager* const EntityManager::getComponentManager() {
+
+	return this->componentMgr;
 
 }
 
@@ -30,67 +36,50 @@ const std::set<Entity>* EntityManager::getEntities() const {
 Entity EntityManager::createEntity() {
 
 	// Generate Entity (random ID)
-	std::default_random_engine e((unsigned int)this->rd());
-	Entity entity = e();
-	// Register entity
+	Entity entity = rand();
+	return entity;
+
+}
+
+void EntityManager::registerEntity(Entity entity) {
+
 	this->entities.get()->insert(entity);
-	return entity;
 
 }
 
-Entity EntityManager::createGrassEntity(float xPos, float yPos, float rotation, float velocity, float width, float height, float energy) {
+void EntityManager::deleteEntity(Entity entity) {
+
+	this->entities.get()->erase(entity);
+	componentMgr->deleteEntity(entity);
+
+}
+
+Entity EntityManager::createLivingEntity(float xPos, float yPos, float rotation, float velocity, float width, float height, Texture texture, LivingComponent::Species species, float energy) {
 
 	const Entity entity = this->createEntity();
 
+	// Build and attach relevant components to entity
 	unsigned int VBO, VAO, size;
 	generateQuad(VBO, VAO, size);
-
-	// Build and attach relevant components to entity
 	componentMgr->setComponent<VertexComponent>(entity, std::make_unique<VertexComponent>(size, VBO, VAO));
 	componentMgr->setComponent<PhysicalComponent>(entity, std::make_unique<PhysicalComponent>(glm::vec2(xPos, yPos), rotation, velocity, width, height));
-	componentMgr->setComponent<SpriteComponent>(entity, std::make_unique<SpriteComponent>(Texture::GRASS));
-	componentMgr->setComponent<LivingComponent>(entity, std::make_unique<LivingComponent>(LivingComponent::Species::GRASS, energy));
+	componentMgr->setComponent<SpriteComponent>(entity, std::make_unique<SpriteComponent>(texture));
+	componentMgr->setComponent<LivingComponent>(entity, std::make_unique<LivingComponent>(species, energy));
 
 	return entity;
 
 }
+Entity EntityManager::createBehaviouralEntity(float xPos, float yPos, float rotation, float velocity, float width, float height, Texture texture, LivingComponent::Species species, float energy, float saturated, float radius, float fov) {
 
-Entity EntityManager::createLemmingEntity(float xPos, float yPos, float rotation, float velocity, float width, float height, float energy, float saturated, float radius, float fov) {
+	// Create living entity
+	Entity entity = createLivingEntity(xPos, yPos, rotation, velocity, width, height, texture, species, energy);
 	
-	const Entity entity = this->createEntity();
-
-	unsigned int VBO, VAO, size;
-	generateQuad(VBO, VAO, size);
-
-	// Build and attach relevant components to entity
-	componentMgr->setComponent<VertexComponent>(entity, std::make_unique<VertexComponent>(size, VBO, VAO));
-	componentMgr->setComponent<PhysicalComponent>(entity, std::make_unique<PhysicalComponent>(glm::vec2(xPos, yPos), rotation, velocity, width, height));
-	componentMgr->setComponent<SpriteComponent>(entity, std::make_unique<SpriteComponent>(Texture::LEMMING));
-	componentMgr->setComponent<LivingComponent>(entity, std::make_unique<LivingComponent>(LivingComponent::Species::LEMMING, energy));
-	componentMgr->setComponent<TargetComponent>(entity, std::make_unique<TargetComponent>(saturated, radius, fov));
+	// Add behavioural component
+	componentMgr->setComponent<BehaviourComponent>(entity, std::make_unique<BehaviourComponent>(saturated, radius, fov));
 
 	return entity;
 
 }
-
-Entity EntityManager::createFoxEntity(float xPos, float yPos, float rotation, float velocity, float width, float height, float energy, float saturated, float radius, float fov) {
-
-	const Entity entity = this->createEntity();
-
-	unsigned int VBO, VAO, size;
-	generateQuad(VBO, VAO, size);
-
-	// Build and attach relevant components to entity
-	componentMgr->setComponent<VertexComponent>(entity, std::make_unique<VertexComponent>(size, VBO, VAO));
-	componentMgr->setComponent<PhysicalComponent>(entity, std::make_unique<PhysicalComponent>(glm::vec2(xPos, yPos), rotation, velocity, width, height));
-	componentMgr->setComponent<SpriteComponent>(entity, std::make_unique<SpriteComponent>(Texture::FOX));
-	componentMgr->setComponent<LivingComponent>(entity, std::make_unique<LivingComponent>(LivingComponent::Species::FOX, energy));
-	componentMgr->setComponent<TargetComponent>(entity, std::make_unique<TargetComponent>(saturated, radius, fov));
-
-	return entity;
-
-}
-
 
 /**
  * Generate an entity suitable only for testing.
@@ -151,13 +140,13 @@ Entity EntityManager::generateTestSprite(float xPos, float yPos, float rotation,
 	componentMgr->setComponent<VertexComponent>(entity, std::make_unique<VertexComponent>(sizeof(indices) / sizeof(float), VBO, VAO));
 	componentMgr->setComponent<SpriteComponent>(entity, std::make_unique<SpriteComponent>(Texture::FOX));
 	componentMgr->setComponent<LivingComponent>(entity, std::make_unique<LivingComponent>(LivingComponent::Species::FOX, 20000.0f));
-	componentMgr->setComponent<TargetComponent>(entity, std::make_unique<TargetComponent>(0.0f, 800.0f, 170.0f));
+	componentMgr->setComponent<BehaviourComponent>(entity, std::make_unique<BehaviourComponent>(0.0f, 800.0f, 170.0f));
 
 	return entity;
 
 }
 
-void EntityManager::generateQuad(unsigned int& VBO, unsigned int& VAO, unsigned int& size) {
+void generateQuad(unsigned int& VBO, unsigned int& VAO, unsigned int& size) {
 
 	// Declare vertices
 	float vertices[] = {

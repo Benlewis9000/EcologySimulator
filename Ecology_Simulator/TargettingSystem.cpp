@@ -1,26 +1,24 @@
 #include "TargettingSystem.h"
 
-void updateTarget(PhysicalComponent* entityPhys, LivingComponent* entityLiv, TargetComponent* entityTarg, PhysicalComponent* targPhys, LivingComponent* targLiv) {
+void updateTarget(PhysicalComponent* entityPhys, LivingComponent* entityLiv, BehaviourComponent* entityBvr, PhysicalComponent* targPhys, LivingComponent* targLiv, int& closestTarget) {
 
-	if (entityPhys != nullptr && entityLiv != nullptr && entityTarg != nullptr && targPhys != nullptr && targLiv != nullptr) {
+	if (entityPhys != nullptr && entityLiv != nullptr && entityBvr != nullptr && targPhys != nullptr && targLiv != nullptr) {
 
-		float shortest = INT_MAX;
-
-		// Check distance between entity and target is shortest so far and within radius
+		// Check distance between entity and target is shortest so far
 		float dist = glm::distance(entityPhys->pos, targPhys->pos);
-		if (dist < shortest && dist <= entityTarg->radius) {
+		if (dist < closestTarget) {
 
 			// Update shortest distance
-			shortest = dist;
+			closestTarget = dist;
 
 			// If unsaturated, and target is one lower on food chain, pursue food
 			// OR if saturated, and target is equal species, pursue mate
-			if ( (entityLiv->energy < entityTarg->saturated && targLiv->species == entityLiv->species - 1)
-				|| (entityLiv->energy > entityTarg->saturated && targLiv->species == entityLiv->species) ){
+			if ( (entityLiv->energy < entityBvr->saturated && targLiv->species == entityLiv->species - 1)
+				|| (entityLiv->energy > entityBvr->saturated && targLiv->species == entityLiv->species) ){
 
 				// Calculate rotation to point at target, and assign if within FOV
 				float r = calculateTargetRotation(entityPhys, targPhys);
-				if (std::abs(entityPhys->rotation - r) < entityTarg->fov / 2.0f) entityPhys->rotation = r;
+				if (std::abs(entityPhys->rotation - r) < entityBvr->fov / 2.0f) entityPhys->rotation = r;
 
 			}
 

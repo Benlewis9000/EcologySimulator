@@ -8,4 +8,4 @@
 #include "ComponentManager.h"
 #include "Simulation.h"
 
-void moveEntity(PhysicalComponent* entityPhys, LivingComponent* entityLiv, unsigned int wWidth, unsigned int wHeight);
+bool moveEntity(PhysicalComponent* entityPhys, LivingComponent* entityLiv, unsigned int wWidth, unsigned int wHeight);

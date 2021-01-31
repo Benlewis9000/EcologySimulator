@@ -108,17 +108,19 @@ public:
 	float energy;
 };
 
-// TODO rename to BehaviourComponent?
-class TargetComponent : public Component {
+class BehaviourComponent : public Component {
 public:
 	/**
-	 * Construct a target component (used to assign a target entity to pursue).
-	 * TODO fill in params
+	 * Construct a behaviour component (used in targetting system).
+	 * 
+	 * @param saturated level of energy at which an entities hunger is considered saturated thus will try to breed instead of eat
+	 * @param range in which the entity can detect other entities
+	 * @param fov field of view in which an entity can detect other entities (in degrees)
 	 */
-	TargetComponent(float saturated, float radius, float fov) 
-		: saturated(saturated), radius(radius), fov(fov) {}
+	BehaviourComponent(float saturated, float range, float fov)
+		: saturated(saturated), range(range), fov(fov) {}
 	float saturated;
-	float radius;
+	float range;
 	float fov;
 };
 
