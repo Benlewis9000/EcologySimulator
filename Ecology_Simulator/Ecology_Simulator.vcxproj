@@ -155,55 +155,54 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\tracy\TracyClient.cpp" />
-    <ClCompile Include="BreedingSystem.cpp" />
-    <ClCompile Include="CollisionSystem.cpp" />
-    <ClCompile Include="ComponentManager.cpp" />
-    <ClCompile Include="EntityManager.cpp" />
-    <ClCompile Include="FeedingSystem.cpp" />
-    <ClCompile Include="glad.c" />
+    <ClCompile Include="Component\ComponentManager.cpp" />
+    <ClCompile Include="Entity\EntityManager.cpp" />
+    <ClCompile Include="libs\glad.c" />
+    <ClCompile Include="libs\stb_image.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="MovementSystem.cpp" />
-    <ClCompile Include="RenderSystem.cpp" />
-    <ClCompile Include="Shader.cpp" />
-    <ClCompile Include="Simulation.cpp" />
-    <ClCompile Include="SpawningSystem.cpp" />
-    <ClCompile Include="stb_image.cpp" />
-    <ClCompile Include="SystemManager.cpp" />
-    <ClCompile Include="TargettingSystem.cpp" />
-    <ClCompile Include="TextureManager.cpp" />
+    <ClCompile Include="Simulation\Shader.cpp" />
+    <ClCompile Include="Simulation\Simulation.cpp" />
+    <ClCompile Include="Simulation\TextureManager.cpp" />
+    <ClCompile Include="System\BreedingSystem.cpp" />
+    <ClCompile Include="System\CollisionSystem.cpp" />
+    <ClCompile Include="System\FeedingSystem.cpp" />
+    <ClCompile Include="System\MovementSystem.cpp" />
+    <ClCompile Include="System\RenderSystem.cpp" />
+    <ClCompile Include="System\SpawningSystem.cpp" />
+    <ClCompile Include="System\SystemManager.cpp" />
+    <ClCompile Include="System\TargettingSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\tracy\Tracy.hpp" />
-    <ClInclude Include="BreedingSystem.h" />
-    <ClInclude Include="CollisionSystem.h" />
-    <ClInclude Include="Component.h" />
-    <ClInclude Include="ComponentManager.h" />
-    <ClInclude Include="FeedingSystem.h" />
-    <ClInclude Include="Entity.h" />
-    <ClInclude Include="EntityManager.h" />
-    <ClInclude Include="json.hpp" />
-    <ClInclude Include="MovementSystem.h" />
-    <ClInclude Include="RenderSystem.h" />
+    <ClInclude Include="Component\Component.h" />
+    <ClInclude Include="Component\ComponentManager.h" />
+    <ClInclude Include="Entity\Entity.h" />
+    <ClInclude Include="Entity\EntityManager.h" />
+    <ClInclude Include="libs\json.hpp" />
+    <ClInclude Include="libs\robin_hood.h" />
+    <ClInclude Include="libs\stb_image.h" />
     <ClInclude Include="main.h" />
-    <ClInclude Include="robin_hood.h" />
-    <ClInclude Include="Shader.h" />
-    <ClInclude Include="Simulation.h" />
-    <ClInclude Include="SpawningSystem.h" />
-    <ClInclude Include="stb_image.h" />
-    <ClInclude Include="SystemManager.h" />
-    <ClInclude Include="TargettingSystem.h" />
-    <ClInclude Include="TextureManager.h" />
+    <ClInclude Include="Simulation\Shader.h" />
+    <ClInclude Include="Simulation\Simulation.h" />
+    <ClInclude Include="Simulation\TextureManager.h" />
+    <ClInclude Include="System\BreedingSystem.h" />
+    <ClInclude Include="System\CollisionSystem.h" />
+    <ClInclude Include="System\FeedingSystem.h" />
+    <ClInclude Include="System\MovementSystem.h" />
+    <ClInclude Include="System\RenderSystem.h" />
+    <ClInclude Include="System\SpawningSystem.h" />
+    <ClInclude Include="System\SystemManager.h" />
+    <ClInclude Include="System\TargettingSystem.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="config.json" />
-    <None Include="fragment.glsl" />
-    <None Include="vertex.glsl" />
+    <None Include="Shaders\fragment.glsl" />
+    <None Include="Shaders\vertex.glsl" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="fox-prototype.png" />
-    <Image Include="grass-prototype.png" />
-    <Image Include="lemming-prototype.png" />
+    <Image Include="resources\fox-prototype.png" />
+    <Image Include="resources\grass-prototype.png" />
+    <Image Include="resources\lemming-prototype.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,178 +1,164 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
+    <Filter Include="Source">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="Header Files\Component">
+    <Filter Include="Source\Component">
       <UniqueIdentifier>{30739844-7936-40a1-976f-29c12a8863a5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Entity">
+    <Filter Include="Source\Entity">
       <UniqueIdentifier>{3c4e4180-a63e-4188-ae39-69474e2b1983}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\System">
+    <Filter Include="Source\System">
       <UniqueIdentifier>{f47447e2-d6e8-432d-b567-bbd86b024f48}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\System">
-      <UniqueIdentifier>{dc8cbce6-1e2e-4ffa-9846-db064df57f19}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Simulation">
-      <UniqueIdentifier>{3862d0f6-ad54-4368-9a6d-03a1818afa0f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\libs">
-      <UniqueIdentifier>{6442d766-e312-40d7-8fcc-ef6f13b2f53d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\libs">
+    <Filter Include="Source\libs">
       <UniqueIdentifier>{5b29ac5d-844f-4e4b-bb94-28feb3111d73}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Simulation">
+    <Filter Include="Source\Simulation">
       <UniqueIdentifier>{3e53388d-dcb3-41cc-9865-0498d8ef0324}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Shaders">
+      <UniqueIdentifier>{9ff34b22-ff7a-41af-b5d5-68bc6fa73e8e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\resources">
+      <UniqueIdentifier>{776fa1de-bb16-4f5a-a04b-6f134fc45162}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Component\ComponentManager.cpp">
+      <Filter>Source\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity\EntityManager.cpp">
+      <Filter>Source\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\glad.c">
+      <Filter>Source\libs</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\stb_image.cpp">
+      <Filter>Source\libs</Filter>
+    </ClCompile>
+    <ClCompile Include="Simulation\Shader.cpp">
+      <Filter>Source\Simulation</Filter>
+    </ClCompile>
+    <ClCompile Include="Simulation\Simulation.cpp">
+      <Filter>Source\Simulation</Filter>
+    </ClCompile>
+    <ClCompile Include="Simulation\TextureManager.cpp">
+      <Filter>Source\Simulation</Filter>
+    </ClCompile>
+    <ClCompile Include="System\BreedingSystem.cpp">
+      <Filter>Source\System</Filter>
+    </ClCompile>
+    <ClCompile Include="System\CollisionSystem.cpp">
+      <Filter>Source\System</Filter>
+    </ClCompile>
+    <ClCompile Include="System\FeedingSystem.cpp">
+      <Filter>Source\System</Filter>
+    </ClCompile>
+    <ClCompile Include="System\MovementSystem.cpp">
+      <Filter>Source\System</Filter>
+    </ClCompile>
+    <ClCompile Include="System\RenderSystem.cpp">
+      <Filter>Source\System</Filter>
+    </ClCompile>
+    <ClCompile Include="System\SpawningSystem.cpp">
+      <Filter>Source\System</Filter>
+    </ClCompile>
+    <ClCompile Include="System\SystemManager.cpp">
+      <Filter>Source\System</Filter>
+    </ClCompile>
+    <ClCompile Include="System\TargettingSystem.cpp">
+      <Filter>Source\System</Filter>
+    </ClCompile>
     <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="BreedingSystem.cpp">
-      <Filter>Source Files\System</Filter>
-    </ClCompile>
-    <ClCompile Include="CollisionSystem.cpp">
-      <Filter>Source Files\System</Filter>
-    </ClCompile>
-    <ClCompile Include="FeedingSystem.cpp">
-      <Filter>Source Files\System</Filter>
-    </ClCompile>
-    <ClCompile Include="MovementSystem.cpp">
-      <Filter>Source Files\System</Filter>
-    </ClCompile>
-    <ClCompile Include="RenderSystem.cpp">
-      <Filter>Source Files\System</Filter>
-    </ClCompile>
-    <ClCompile Include="SystemManager.cpp">
-      <Filter>Source Files\System</Filter>
-    </ClCompile>
-    <ClCompile Include="TargettingSystem.cpp">
-      <Filter>Source Files\System</Filter>
-    </ClCompile>
-    <ClCompile Include="Shader.cpp">
-      <Filter>Source Files\Simulation</Filter>
-    </ClCompile>
-    <ClCompile Include="Simulation.cpp">
-      <Filter>Source Files\Simulation</Filter>
-    </ClCompile>
-    <ClCompile Include="TextureManager.cpp">
-      <Filter>Source Files\Simulation</Filter>
-    </ClCompile>
-    <ClCompile Include="stb_image.cpp">
-      <Filter>Source Files\libs</Filter>
-    </ClCompile>
-    <ClCompile Include="..\tracy\TracyClient.cpp">
-      <Filter>Source Files\libs</Filter>
-    </ClCompile>
-    <ClCompile Include="glad.c">
-      <Filter>Source Files\libs</Filter>
-    </ClCompile>
-    <ClCompile Include="EntityManager.cpp">
-      <Filter>Source Files\Simulation</Filter>
-    </ClCompile>
-    <ClCompile Include="ComponentManager.cpp">
-      <Filter>Source Files\Simulation</Filter>
-    </ClCompile>
-    <ClCompile Include="SpawningSystem.cpp">
-      <Filter>Source Files\System</Filter>
+      <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Component.h">
-      <Filter>Header Files\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="Entity.h">
-      <Filter>Header Files\Entity</Filter>
-    </ClInclude>
-    <ClInclude Include="RenderSystem.h">
-      <Filter>Header Files\System</Filter>
-    </ClInclude>
-    <ClInclude Include="MovementSystem.h">
-      <Filter>Header Files\System</Filter>
-    </ClInclude>
-    <ClInclude Include="TargettingSystem.h">
-      <Filter>Header Files\System</Filter>
-    </ClInclude>
-    <ClInclude Include="CollisionSystem.h">
-      <Filter>Header Files\System</Filter>
-    </ClInclude>
-    <ClInclude Include="SystemManager.h">
-      <Filter>Header Files\System</Filter>
-    </ClInclude>
-    <ClInclude Include="FeedingSystem.h">
-      <Filter>Header Files\System</Filter>
-    </ClInclude>
-    <ClInclude Include="BreedingSystem.h">
-      <Filter>Header Files\System</Filter>
-    </ClInclude>
-    <ClInclude Include="json.hpp">
-      <Filter>Header Files\libs</Filter>
-    </ClInclude>
-    <ClInclude Include="robin_hood.h">
-      <Filter>Header Files\libs</Filter>
+      <Filter>Source</Filter>
     </ClInclude>
     <ClInclude Include="..\tracy\Tracy.hpp">
-      <Filter>Header Files\libs</Filter>
+      <Filter>Source\libs</Filter>
     </ClInclude>
-    <ClInclude Include="stb_image.h">
-      <Filter>Header Files\libs</Filter>
+    <ClInclude Include="Component\Component.h">
+      <Filter>Source\Component</Filter>
     </ClInclude>
-    <ClInclude Include="Shader.h">
-      <Filter>Header Files\Simulation</Filter>
+    <ClInclude Include="Component\ComponentManager.h">
+      <Filter>Source\Component</Filter>
     </ClInclude>
-    <ClInclude Include="Simulation.h">
-      <Filter>Header Files\Simulation</Filter>
+    <ClInclude Include="Entity\Entity.h">
+      <Filter>Source\Entity</Filter>
     </ClInclude>
-    <ClInclude Include="TextureManager.h">
-      <Filter>Header Files\Simulation</Filter>
+    <ClInclude Include="Entity\EntityManager.h">
+      <Filter>Source\Entity</Filter>
     </ClInclude>
-    <ClInclude Include="EntityManager.h">
-      <Filter>Header Files\Simulation</Filter>
+    <ClInclude Include="libs\json.hpp">
+      <Filter>Source\libs</Filter>
     </ClInclude>
-    <ClInclude Include="ComponentManager.h">
-      <Filter>Header Files\Simulation</Filter>
+    <ClInclude Include="libs\robin_hood.h">
+      <Filter>Source\libs</Filter>
     </ClInclude>
-    <ClInclude Include="SpawningSystem.h">
-      <Filter>Header Files\System</Filter>
+    <ClInclude Include="libs\stb_image.h">
+      <Filter>Source\libs</Filter>
+    </ClInclude>
+    <ClInclude Include="Simulation\Shader.h">
+      <Filter>Source\Simulation</Filter>
+    </ClInclude>
+    <ClInclude Include="Simulation\Simulation.h">
+      <Filter>Source\Simulation</Filter>
+    </ClInclude>
+    <ClInclude Include="Simulation\TextureManager.h">
+      <Filter>Source\Simulation</Filter>
+    </ClInclude>
+    <ClInclude Include="System\BreedingSystem.h">
+      <Filter>Source\System</Filter>
+    </ClInclude>
+    <ClInclude Include="System\CollisionSystem.h">
+      <Filter>Source\System</Filter>
+    </ClInclude>
+    <ClInclude Include="System\FeedingSystem.h">
+      <Filter>Source\System</Filter>
+    </ClInclude>
+    <ClInclude Include="System\MovementSystem.h">
+      <Filter>Source\System</Filter>
+    </ClInclude>
+    <ClInclude Include="System\RenderSystem.h">
+      <Filter>Source\System</Filter>
+    </ClInclude>
+    <ClInclude Include="System\SpawningSystem.h">
+      <Filter>Source\System</Filter>
+    </ClInclude>
+    <ClInclude Include="System\SystemManager.h">
+      <Filter>Source\System</Filter>
+    </ClInclude>
+    <ClInclude Include="System\TargettingSystem.h">
+      <Filter>Source\System</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="vertex.glsl">
-      <Filter>Source Files</Filter>
+    <None Include="Shaders\fragment.glsl">
+      <Filter>Source\Shaders</Filter>
     </None>
-    <None Include="fragment.glsl">
-      <Filter>Source Files</Filter>
+    <None Include="Shaders\vertex.glsl">
+      <Filter>Source\Shaders</Filter>
     </None>
     <None Include="config.json">
-      <Filter>Resource Files</Filter>
+      <Filter>Source</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="fox-prototype.png">
-      <Filter>Resource Files</Filter>
+    <Image Include="resources\fox-prototype.png">
+      <Filter>Source\resources</Filter>
     </Image>
-    <Image Include="grass-prototype.png">
-      <Filter>Resource Files</Filter>
+    <Image Include="resources\grass-prototype.png">
+      <Filter>Source\resources</Filter>
     </Image>
-    <Image Include="lemming-prototype.png">
-      <Filter>Resource Files</Filter>
+    <Image Include="resources\lemming-prototype.png">
+      <Filter>Source\resources</Filter>
     </Image>
   </ItemGroup>
 </Project>

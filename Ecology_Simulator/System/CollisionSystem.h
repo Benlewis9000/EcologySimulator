@@ -3,7 +3,7 @@
 #include <glm/gtx/rotate_vector.hpp>
 #include <glm/gtx/intersect.hpp>
 
-#include "Simulation.h"
+#include "../Simulation/Simulation.h"
 
 /**
  * Check if the head of one entity intersects the polygon of another entity.

@@ -7,15 +7,14 @@
 #include <memory>
 
 #include <Tracy.hpp>
-#include "robin_hood.h"
+#include "../libs/robin_hood.h"
 
 #include "Component.h"
-#include "Entity.h"
+#include "../Entity/Entity.h"
 
 class ComponentManager {
 	// Member variables
-	// TODO Change to <Entity <CType, Component>> ? Means can iterate entities, and don't need a seperate list of entities. H: can't iterate components, have to iterate through all entities and look for component
-	robin_hood::unordered_map<std::type_index, std::map<Entity, std::unique_ptr<Component>>> components;
+	robin_hood::unordered_map<std::type_index, robin_hood::unordered_map<Entity, std::unique_ptr<Component>>> components;
 
 public:
 

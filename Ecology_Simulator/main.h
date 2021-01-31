@@ -7,13 +7,13 @@
 #include <thread>
 
 #include <Tracy.hpp>
-#include "json.hpp"
+#include "libs/json.hpp"
 
 #include "main.h"
-#include "ComponentManager.h"
-#include "Simulation.h"
-#include "MovementSystem.h"
-#include "RenderSystem.h"
-#include "TargettingSystem.h"
-#include "CollisionSystem.h"
-#include "SystemManager.h"
+#include "Component/ComponentManager.h"
+#include "Simulation/Simulation.h"
+#include "System/MovementSystem.h"
+#include "System/RenderSystem.h"
+#include "System/TargettingSystem.h"
+#include "System/CollisionSystem.h"
+#include "System/SystemManager.h"

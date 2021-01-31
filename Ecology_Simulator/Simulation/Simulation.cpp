@@ -18,6 +18,7 @@ Simulation::Simulation(std::string configPath) : rand(std::random_device{}()) {
 	}
 	else {
 
+		// Exit if failure
 		std::cerr << "Error: could not find JSON configuration \"" << configPath << "\"." << std::endl;
 		exit(-1);
 
@@ -48,7 +49,7 @@ Simulation::Simulation(std::string configPath) : rand(std::random_device{}()) {
 	this->componentMgr = std::make_unique<ComponentManager>();
 	this->entityMgr = std::make_unique<EntityManager>(this->componentMgr.get());
 	this->textureMgr = std::make_unique<TextureManager>();
-	this->shader = std::make_unique<Shader>("vertex.glsl", "fragment.glsl");
+	this->shader = std::make_unique<Shader>("shaders/vertex.glsl", "shaders/fragment.glsl");
 
 }
 

@@ -34,7 +34,7 @@ bool moveEntity(PhysicalComponent* entityPhys, LivingComponent* entityLiv, unsig
 			}
 			// -^- OR -v-
 			if (newPos.y < 0 || newPos.y > wHeight) {
-				entityPhys->rotation = 180 - entityPhys->rotation;
+				entityPhys->rotation = std::fmod((180.0 - entityPhys->rotation) + 360.0, 360.0);
 			}
 
 			// Update components position vector

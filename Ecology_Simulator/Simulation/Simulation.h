@@ -5,13 +5,13 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
-#include "json.hpp"
+#include "../libs/json.hpp"
 
 #include <iostream>
 #include <memory>
 
-#include "ComponentManager.h"
-#include "EntityManager.h"
+#include "../Component/ComponentManager.h"
+#include "../Entity/EntityManager.h"
 #include "Shader.h"
 
 class Simulation {

@@ -1,4 +1,4 @@
-#include "stb_image.h"
+#include "../libs/stb_image.h"
 
 #include "TextureManager.h"
 
@@ -8,7 +8,7 @@
 TextureManager::TextureManager() {
 
 	// Initialise texture manager with these image paths
-	this->init("grass-prototype.png", "lemming-prototype.png", "fox-prototype.png");
+	this->init("resources/grass-prototype.png", "resources/lemming-prototype.png", "resources/fox-prototype.png");
 
 }
 

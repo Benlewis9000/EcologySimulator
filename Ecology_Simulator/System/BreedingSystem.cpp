@@ -7,8 +7,6 @@
  */
 Entity breedEntities(PhysicalComponent* entityPhys, LivingComponent* entityLiv, BehaviourComponent* entityBhv, SpriteComponent* entitySprite, PhysicalComponent* targetPhys, LivingComponent* targetLiv, BehaviourComponent* targetBhv, EntityManager* entityMgr, std::default_random_engine& rand) {
 
-	ZoneScoped
-
 	// Ensure required components are present
 	if (entityPhys != nullptr && entityLiv != nullptr && entityBhv != nullptr && targetPhys != nullptr && targetLiv != nullptr && targetBhv != nullptr) {
 

@@ -4,8 +4,6 @@
 
 bool checkCollision(const PhysicalComponent* entityPhys, const PhysicalComponent* targetPhys) {
 
-	ZoneScoped
-
 	// Ensure correct components are present
 	if (entityPhys != nullptr && targetPhys != nullptr) {
 

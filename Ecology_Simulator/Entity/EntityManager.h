@@ -8,8 +8,8 @@
 #include <glad/glad.h>
 
 #include "Entity.h"
-#include "ComponentManager.h"
-#include "TextureManager.h"
+#include "../Component/ComponentManager.h"
+#include "../Simulation/TextureManager.h"
 
 class EntityManager {
 	// No destructor, EntityManager does not own this resource

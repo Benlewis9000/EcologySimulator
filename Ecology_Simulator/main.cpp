@@ -2,8 +2,6 @@
 
 int main() {
 
-    ZoneScoped
-
     std::random_device rd;
     std::default_random_engine e(rd());
 
