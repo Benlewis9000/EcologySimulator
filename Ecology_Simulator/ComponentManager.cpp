@@ -1,11 +1,21 @@
 #include "ComponentManager.h"
 
+void ComponentManager::deleteEntity(Entity entity) {
 
+	// Iterate outer map keys
+	for (auto iter = components.begin(); iter != components.end(); iter++) {
+
+		// Remove entity where necessary
+		components[iter->first].erase(entity);
+
+	}
+
+}
 
 /**
  * Test harness for the ComponentManager.
  */
-void testSetComponent() {
+void testComponentManager() {
 
 	Entity entity1 = 1;
 	std::unique_ptr<A> a1 = std::make_unique<A>();
@@ -22,7 +32,7 @@ void testSetComponent() {
 	compMan.setComponent<C>(entity1, std::move(c1));
 
 
-	std::cout << "Test setComponent(), hasComponent(): Expect 0, 1, 0" << std::endl;
+	std::cout << "Test setComponent(), hasComponent(), removeComponent(): Expect 0, 1, 0" << std::endl;
 	std::cout << compMan.hasComponent<C>(entity42) << std::endl;
 
 	compMan.setComponent<C>(entity42, std::move(c42));
