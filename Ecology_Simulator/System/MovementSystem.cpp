@@ -15,6 +15,19 @@ bool moveEntity(PhysicalComponent* entityPhys, LivingComponent* entityLiv, unsig
 		// Only apply movement if not dead (no energy)
 		if (entityLiv->energy > 0) {
 
+			// Get position
+			glm::vec2 pos = entityPhys->pos;
+
+			// Make sure entity stays within window
+			// Vertical borders |<- OR ->|
+			if (pos.x < 0 || pos.x > wWidth) {
+				entityPhys->rotation = 360 - entityPhys->rotation;
+			}
+			// Horizontal borders -^- OR -v-
+			if (pos.y < 0 || pos.y > wHeight) {
+				entityPhys->rotation = std::fmod((180.0 - entityPhys->rotation) + 360.0, 360.0);
+			}
+
 			// Translation vector, length of velocity
 			glm::vec2 trans = glm::vec2(0.0f, -entityPhys->velocity);
 			// Rotate to correct orientation
@@ -22,20 +35,9 @@ bool moveEntity(PhysicalComponent* entityPhys, LivingComponent* entityLiv, unsig
 
 			// Get current pos
 			glm::vec2 newPos = entityPhys->pos;
+
 			// Apply translation
 			newPos = newPos + trans;
-
-			// TODO should be abstracted outside of movement system: what if an entity needs to be able to leave?
-			// ^ Give its own system (and maybe a comp has a new var (physics?))
-			// Make sure entity stays within window
-			// |<- OR ->|
-			if (newPos.x < 0 || newPos.x > wWidth) {
-				entityPhys->rotation = 360 - entityPhys->rotation;
-			}
-			// -^- OR -v-
-			if (newPos.y < 0 || newPos.y > wHeight) {
-				entityPhys->rotation = std::fmod((180.0 - entityPhys->rotation) + 360.0, 360.0);
-			}
 
 			// Update components position vector
 			entityPhys->pos = newPos;

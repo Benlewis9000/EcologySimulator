@@ -151,13 +151,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="resources\fox-prototype.png">
+    <Image Include="resources\fox.png">
       <Filter>Source\resources</Filter>
     </Image>
-    <Image Include="resources\grass-prototype.png">
+    <Image Include="resources\grass.png">
       <Filter>Source\resources</Filter>
     </Image>
-    <Image Include="resources\lemming-prototype.png">
+    <Image Include="resources\lemming.png">
       <Filter>Source\resources</Filter>
     </Image>
   </ItemGroup>
