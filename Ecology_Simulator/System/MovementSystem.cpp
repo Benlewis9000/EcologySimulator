@@ -19,13 +19,21 @@ bool moveEntity(PhysicalComponent* entityPhys, LivingComponent* entityLiv, unsig
 			glm::vec2 pos = entityPhys->pos;
 
 			// Make sure entity stays within window
-			// Vertical borders |<- OR ->|
-			if (pos.x < 0 || pos.x > wWidth) {
+			if (pos.x < 0) {
 				entityPhys->rotation = 360 - entityPhys->rotation;
+				pos.x = 0;
 			}
-			// Horizontal borders -^- OR -v-
-			if (pos.y < 0 || pos.y > wHeight) {
+			if (pos.x > wWidth) {
+				entityPhys->rotation = 360 - entityPhys->rotation;
+				pos.x = wWidth;
+			}
+			if (pos.y < 0) {
 				entityPhys->rotation = std::fmod((180.0 - entityPhys->rotation) + 360.0, 360.0);
+				pos.y = 0;
+			}
+			if (pos.y > wHeight) {
+				entityPhys->rotation = std::fmod((180.0 - entityPhys->rotation) + 360.0, 360.0);
+				pos.y = wHeight;
 			}
 
 			// Translation vector, length of velocity
@@ -33,14 +41,11 @@ bool moveEntity(PhysicalComponent* entityPhys, LivingComponent* entityLiv, unsig
 			// Rotate to correct orientation
 			trans = glm::rotate(trans, glm::radians(entityPhys->rotation));
 
-			// Get current pos
-			glm::vec2 newPos = entityPhys->pos;
-
 			// Apply translation
-			newPos = newPos + trans;
+			pos = pos + trans;
 
 			// Update components position vector
-			entityPhys->pos = newPos;
+			entityPhys->pos = pos;
 
 			// Deplete energy (proportionate to velocity)
 			entityLiv->energy = entityLiv->energy - entityPhys->velocity / 500.0f;
