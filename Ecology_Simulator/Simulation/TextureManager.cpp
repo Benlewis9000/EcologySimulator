@@ -8,7 +8,7 @@
 TextureManager::TextureManager() {
 
 	// Initialise texture manager with these image paths
-	this->init("resources/grass-prototype.png", "resources/lemming-prototype.png", "resources/fox-prototype.png");
+	this->init("resources/grass.png", "resources/lemming.png", "resources/fox.png");
 
 }
 
