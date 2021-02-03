@@ -41,36 +41,41 @@ void runSystems(Simulation* sim) {
 			// Reset closest target to max value
 			int closestTarget = INT_MAX;
 
-			for (Entity target : *entityMgr->getEntities()) {
+			// Ignore behavioural systems if entity is not compatible
+			if (entityBhv != nullptr) {
 
-				// Make sure both entities are unqiue and target is not dead
-				if (entity != target && dead.find(target) == dead.end()) {
+				for (Entity target : *entityMgr->getEntities()) {
 
-					// Acquire targets physical component to check range
-					PhysicalComponent* targetPhys = componentMgr->getComponent<PhysicalComponent>(target);
+					// Make sure both entities are unqiue and target is not dead
+					if (entity != target && dead.find(target) == dead.end()) {
 
-					if (entityBhv != nullptr && targetPhys != nullptr) {
+						// Acquire targets physical component to check range
+						PhysicalComponent* targetPhys = componentMgr->getComponent<PhysicalComponent>(target);
 
-						// Ensure target is within range, otherwise ignore
-						float dist = glm::distance(entityPhys->pos, targetPhys->pos);
-						if (dist <= entityBhv->range) {
+						if (entityBhv != nullptr && targetPhys != nullptr) {
 
-							// Acquire target components
-							LivingComponent* targetLiv = componentMgr->getComponent<LivingComponent>(target);
-							BehaviourComponent* targetBhv = componentMgr->getComponent<BehaviourComponent>(target);
+							// Ensure target is within range, otherwise ignore
+							float dist = glm::distance(entityPhys->pos, targetPhys->pos);
+							if (dist <= entityBhv->range) {
 
-							// Update rotation to aim at nearest target
-							updateTarget(entityPhys, entityLiv, entityBhv, targetPhys, targetLiv, closestTarget);
+								// Acquire target components
+								LivingComponent* targetLiv = componentMgr->getComponent<LivingComponent>(target);
+								BehaviourComponent* targetBhv = componentMgr->getComponent<BehaviourComponent>(target);
 
-							// If entities collide
-							if (checkCollision(entityPhys, targetPhys)) {
+								// Update rotation to aim at nearest target
+								updateTarget(entityPhys, entityLiv, entityBhv, targetPhys, targetLiv, closestTarget);
 
-								// Breeding system
-								Entity child = breedEntities(entityPhys, entityLiv, entityBhv, entitySprite, targetPhys, targetLiv, targetBhv, entityMgr, sim->getRand());
-								if (child != 0) children.insert(child);
+								// If entities collide
+								if (checkCollision(entityPhys, targetPhys)) {
 
-								// Feeding system
-								if (eatEntity(entityLiv, entityPhys, entityBhv, targetLiv, sim->getRand())) dead.insert(target);
+									// Breeding system
+									Entity child = breedEntities(entityPhys, entityLiv, entityBhv, entitySprite, targetPhys, targetLiv, targetBhv, entityMgr, sim->getRand());
+									if (child != 0) children.insert(child);
+
+									// Feeding system
+									if (eatEntity(entityLiv, entityPhys, entityBhv, targetLiv, sim->getRand())) dead.insert(target);
+
+								}
 
 							}
 
