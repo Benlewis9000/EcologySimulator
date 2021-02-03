@@ -20,11 +20,11 @@
     <Filter Include="Source\Simulation">
       <UniqueIdentifier>{3e53388d-dcb3-41cc-9865-0498d8ef0324}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\Shaders">
-      <UniqueIdentifier>{9ff34b22-ff7a-41af-b5d5-68bc6fa73e8e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source\resources">
       <UniqueIdentifier>{776fa1de-bb16-4f5a-a04b-6f134fc45162}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\shaders">
+      <UniqueIdentifier>{9ff34b22-ff7a-41af-b5d5-68bc6fa73e8e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -141,10 +141,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\fragment.glsl">
-      <Filter>Source\Shaders</Filter>
+      <Filter>Source\shaders</Filter>
     </None>
     <None Include="Shaders\vertex.glsl">
-      <Filter>Source\Shaders</Filter>
+      <Filter>Source\shaders</Filter>
     </None>
     <None Include="config.json">
       <Filter>Source</Filter>

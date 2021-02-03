@@ -23,7 +23,7 @@ bool moveEntity(PhysicalComponent* entityPhys, LivingComponent* entityLiv, unsig
 				entityPhys->rotation = 360 - entityPhys->rotation;
 				pos.x = 0;
 			}
-			if (pos.x > wWidth) {
+			else if (pos.x > wWidth) {
 				entityPhys->rotation = 360 - entityPhys->rotation;
 				pos.x = wWidth;
 			}
@@ -31,7 +31,7 @@ bool moveEntity(PhysicalComponent* entityPhys, LivingComponent* entityLiv, unsig
 				entityPhys->rotation = std::fmod((180.0 - entityPhys->rotation) + 360.0, 360.0);
 				pos.y = 0;
 			}
-			if (pos.y > wHeight) {
+			else if (pos.y > wHeight) {
 				entityPhys->rotation = std::fmod((180.0 - entityPhys->rotation) + 360.0, 360.0);
 				pos.y = wHeight;
 			}

@@ -1,5 +1,8 @@
 #include "TargettingSystem.h"
 
+/**
+ * Update an entities rotation to look at a target, depending on whether in feeding or breeding state, and closer than current target.
+ */
 void updateTarget(PhysicalComponent* entityPhys, LivingComponent* entityLiv, BehaviourComponent* entityBvr, PhysicalComponent* targPhys, LivingComponent* targLiv, int& closestTarget) {
 
 	if (entityPhys != nullptr && entityLiv != nullptr && entityBvr != nullptr && targPhys != nullptr && targLiv != nullptr) {

@@ -39,7 +39,7 @@ bool checkCollision(const PhysicalComponent* entityPhys, const PhysicalComponent
 		polygon.push_back(v4);
 
 		// Calculate point outside of target polygon to act as second vertex of ray
-		glm::vec2 rayBegin(mouth.x, mouth.y - entityPhys->pos.y - entityPhys->height);
+		glm::vec2 rayBegin(mouth.x, mouth.y - targetPhys->pos.y - targetPhys->height);
 
 		// Cast ray, returning true if mouth is within the polygon (thus collision)
 		return raycastPointWithPolygon(rayBegin, mouth, polygon);

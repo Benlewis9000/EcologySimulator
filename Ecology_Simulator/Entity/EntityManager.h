@@ -35,5 +35,4 @@ public:
 
 };
 
-// TODO abstract to Util?
 void generateQuad(unsigned int& VBO, unsigned int& VAO, unsigned int& size);

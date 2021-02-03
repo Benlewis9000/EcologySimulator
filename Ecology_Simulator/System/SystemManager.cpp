@@ -1,5 +1,10 @@
 #include "SystemManager.h"
 
+/**
+ * Execute all systems as required, passing the right components to each.
+ * 
+ * @param sim the simulation housing the entities and components to apply logic to.
+ */
 void runSystems(Simulation* sim) {
 
 	// Access simulations members
@@ -33,6 +38,7 @@ void runSystems(Simulation* sim) {
 			LivingComponent* entityLiv = componentMgr->getComponent<LivingComponent>(entity);
 			BehaviourComponent* entityBhv = componentMgr->getComponent<BehaviourComponent>(entity);
 
+			// Reset closest target to max value
 			int closestTarget = INT_MAX;
 
 			for (Entity target : *entityMgr->getEntities()) {

@@ -16,7 +16,6 @@ class Component {};
 
 // Test classes, NOT for usage 
 // Note that they do not adhere to ECS principles (C should not have behaviour, for example)
-// TODO Not for use, so privatise and create public test method that uses them
 class A : public Component {
 	using Component::Component;
 };
@@ -89,7 +88,7 @@ public:
 class LivingComponent : public Component {
 public:
 
-	/** TODO abstract this to it's own proper enum class for universal data/use
+	/** 
 	 * Species type (used by Targetting and Collision systems for feeding and breeding).
 	 * Species are ordered in an ascending food chain, e.g. GRASS is at the bottom, FOX is at the top,
 	 * thus listed first and last respectively.
@@ -104,7 +103,7 @@ public:
 	 */
 	LivingComponent(Species species, float energy) 
 		: species(species), energy(energy) {}
-	Species species;
+	const Species species;
 	float energy;
 };
 
@@ -123,5 +122,3 @@ public:
 	float range;
 	float fov;
 };
-
-// TODO flee component: like targetting, but set a boolean to true if sees a predator, H will cause lag unless systems moved to the one n^2 loop model

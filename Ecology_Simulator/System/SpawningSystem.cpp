@@ -1,5 +1,8 @@
 #include "SpawningSystem.h"
 
+/**
+ * Spawn grass entities randomly where the spawn rate defined in the config is the probability of a succesful spawn.
+ */
 void spawnGrass(nlohmann::json config, EntityManager* entityMgr, std::random_device& rd, std::default_random_engine& iRand, int windowWidth, int windowHeight) {
 
 	using namespace nlohmann;

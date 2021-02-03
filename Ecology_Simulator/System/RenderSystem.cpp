@@ -4,10 +4,8 @@
 
 #include "RenderSystem.h"
 
-/** TODO update docs
+/**
  * Render all entities with the required components (PositionComponent, VertexComponent, SpriteComponent) in a given Simulation.
- * 
- * @param sim a pointer to the Simulator possessing the entities and components to render
  */
 void renderEntity(PhysicalComponent* entityPhys, VertexComponent* entityVert, SpriteComponent* entitySprite, Shader* const shader, TextureManager* textureManager, GLFWwindow* window) {
 
