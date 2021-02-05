@@ -43,6 +43,14 @@ bool moveEntity(PhysicalComponent* entityPhys, LivingComponent* entityLiv, unsig
 
 }
 
+/**
+ * Calculate a new position of a vector.
+ * 
+ * @param pos original position
+ * @param velocity to move vector by
+ * @param rotation in degrees
+ * @returns new position
+ */
 glm::vec2 calculateNewPos(glm::vec2 pos, float velocity, float rotation) {
 
 	// Translation vector, length of velocity
