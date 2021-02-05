@@ -4,20 +4,20 @@
   "grassSpawnrate": 0.1,
   "entities": {
     "grass": {
-      "quantity": 200,
+      "quantity": 30,
       "energy": 2.0
     },
     "lemming": {
-      "quantity": 5,
-      "velocity": 4.0,
+      "quantity": 15,
+      "velocity": 2.0,
       "energy": 4.0,
       "saturated": 4.0,
       "range": 300.0,
       "fov": 270.0
     },
     "fox": {
-      "quantity": 0,
-      "velocity": 1.5,
+      "quantity": 3,
+      "velocity": 3.0,
       "energy": 16.0,
       "saturated": 16.0,
       "range": 300.0,
